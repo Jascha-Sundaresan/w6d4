@@ -1,0 +1,14 @@
+div.carousel {
+  height: 500px;
+  width: 500px;
+  margin: auto;
+}
+
+div.items {
+  height: 100%;
+  width: 100%;
+}
+
+div.items :not(.active) {
+  display: none;
+}
