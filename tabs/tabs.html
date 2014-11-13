@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Cool Website</title>
+    <script src="./jquery-1.11.1.js"></script>
+    <script src="./tabs.js"></script>
+    <link rel="stylesheet" type="text/css" href="./cssreset-min.css">
+    <link href="./tabs.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <ul class='tabs' data-content='{"tabs": "#content-tabs"}'>
+      <li><a href='#breed' class="active">Breed</a></li>
+      <li><a href='#breed2'>Breed2</a></li>
+      <li><a href='#breed3'>Breed3</a></li>
+    </ul>
+    <div id="content-tabs">
+      <div class="tab-pane active" id="breed"><p>"breed info"</p></div>
+      <div class="tab-pane" id="breed2"><p>"breed info2"</p></div>
+      <div class="tab-pane" id="breed3"><p>"breed info3"</p></div>
+    </div>
+    <script>
+      $(function() {
+        $('.tabs').tabs();
+      })
+    </script>
+  </body>
+</html>
+
