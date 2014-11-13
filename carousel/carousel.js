@@ -33,16 +33,38 @@
   }
   
   $.Carousel.prototype.slide = function(dir){
-    this.$images.eq(this.activeIdx).removeClass("active");
+    if (this.transitioning === true){
+      return
+    }
+    this.transitioning = true;
+    var fn = this;
+    var currentIdx = this.activeIdx
+    var $prev = this.$images.eq(this.activeIdx)
+    var dirClass = (dir === 1 ? "left" : "right");
+    
+    $prev.addClass(dirClass);
+    
+    $prev.one("transitionend", function(){
+     $prev.removeClass("active left right");
+     fn.transitioning = false;
+    });
+    
     this.activeIdx += dir;
+    
     var wrapper = this.$images.length - 1;
     if(this.activeIdx > wrapper){
       this.activeIdx = 0;
     }else if(this.activeIdx < 0){
       this.activeIdx = wrapper;
     }
-    this.$images.eq(this.activeIdx).addClass("active");
-    
+    var $curr = this.$images.eq(this.activeIdx)
+    $curr.addClass("active");
+    dirClass = (dir === 1 ? "right" : "left")
+    $curr.addClass(dirClass);
+   
+    setTimeout(function(){
+      $curr.removeClass("left right");
+    }, 0);
   }
   
 })(jQuery);
